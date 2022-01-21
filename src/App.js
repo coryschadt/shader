@@ -28,8 +28,8 @@ const WaveShaderMaterial = shaderMaterial(
       vUv = uv;
 
       vec3 pos = position;
-      float noiseFreq = 2.0;
-      float noiseAmp = 0.4;
+      float noiseFreq = 1.0;
+      float noiseAmp = 0.3;
       vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);
       pos.z += snoise3(noisePos) * noiseAmp;
       vWave = pos.z;
@@ -62,7 +62,7 @@ const Wave = () => {
   const ref = useRef()
   useFrame(({ clock }) => (ref.current.uTime = clock.getElapsedTime()))
 
-  const [image] = useLoader(THREE.TextureLoader, ['/images/der2.png'])
+  const [image] = useLoader(THREE.TextureLoader, ['/images/go.png'])
 
   return (
     <mesh>
@@ -74,7 +74,7 @@ const Wave = () => {
 
 const Scene = () => {
   return (
-    <Canvas camera={{ fov: 15, position: [0, 0, 4] }}>
+    <Canvas camera={{ fov: 13, position: [0, 0, 4] }}>
       <Suspense fallback={null}>
         <Wave />
       </Suspense>
